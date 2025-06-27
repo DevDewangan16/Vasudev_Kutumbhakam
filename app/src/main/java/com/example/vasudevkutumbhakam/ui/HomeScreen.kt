@@ -41,7 +41,7 @@ import com.example.vasudevkutumbhakam.R
 @Composable
 fun HomeScreen(){
     LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(5.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
@@ -190,32 +190,48 @@ fun HomeScreen(){
         }
         item {
             Image(painter = painterResource(id = R.drawable.loader), contentDescription ="loder" ,
-                modifier = Modifier.fillMaxWidth().height(74.dp))
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(74.dp))
         }
 
         item {
             Image(painter = painterResource(id = R.drawable.guide), contentDescription ="loder" ,
-                modifier = Modifier.fillMaxWidth().height(192.dp))
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(192.dp))
         }
 
         item {
             Image(painter = painterResource(id = R.drawable.banner1), contentDescription ="loder" ,
-                modifier = Modifier.fillMaxWidth().height(120.dp))
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(120.dp))
         }
 
         item {
             Image(painter = painterResource(id = R.drawable.banner2), contentDescription ="loder" ,
-                modifier = Modifier.fillMaxWidth().height(120.dp))
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(120.dp))
         }
 
         item {
             Image(painter = painterResource(id = R.drawable.banner3), contentDescription ="loder" ,
-                modifier = Modifier.fillMaxWidth().height(98.dp))
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(98.dp))
         }
 
         item {
             Image(painter = painterResource(id = R.drawable.banner4), contentDescription ="loder" ,
-                modifier = Modifier.fillMaxWidth().height(150.dp))
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp))
+        }
+        
+        item{
+            Spacer(modifier = Modifier.fillMaxWidth().height(60.dp))
         }
     }
 }

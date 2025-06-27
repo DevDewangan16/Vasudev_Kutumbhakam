@@ -12,7 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.vasudevkutumbhakam.ui.HomeScreen
+import com.example.vasudevkutumbhakam.ui.ProfileScreen
+import com.example.vasudevkutumbhakam.ui.VasuadevApp
 import com.example.vasudevkutumbhakam.ui.theme.VasudevKutumbhakamTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             VasudevKutumbhakamTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) {
-                    HomeScreen()
+                    VasuadevApp()
                 }
             }
         }
