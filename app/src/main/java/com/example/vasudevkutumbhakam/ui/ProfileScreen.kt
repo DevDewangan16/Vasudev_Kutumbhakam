@@ -35,42 +35,7 @@ fun ProfileScreen() {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
     ) {
-        // Header with back button and notification
-        item {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 12.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Back",
-                        tint = Color.Black,
-                        modifier = Modifier.clickable { /* Handle back navigation */ }
-                    )
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Text(
-                        text = "Profile",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color.Black
-                    )
-                }
-                Icon(
-                    imageVector = Icons.Default.Notifications,
-                    contentDescription = "Notifications",
-                    tint = Color.Black,
-                    modifier = Modifier.clickable { /* Handle notifications */ }
-                )
-            }
-        }
 
         // Profile Section
         item {
@@ -147,7 +112,7 @@ fun ProfileScreen() {
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xff636AE8)
                     ),
-                    shape = RoundedCornerShape(20.dp)
+                    shape = RoundedCornerShape(5.dp)
                 ) {
                     Text(
                         text = "Invite & Earn upto 250",
@@ -165,8 +130,6 @@ fun ProfileScreen() {
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-                shape = RoundedCornerShape(12.dp)
             ) {
                 Column {
                     val menuItems = listOf(
