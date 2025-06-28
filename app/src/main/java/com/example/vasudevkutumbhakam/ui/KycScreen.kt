@@ -77,30 +77,9 @@ fun MainKYCScreen(navController: NavController) {
 
     LazyColumn(
         modifier = Modifier
-            .fillMaxSize()
-            .background(KYCColors.LightGray),
+            .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {
-        item {
-            // Top bar
-            TopAppBar(
-                title = { },
-                navigationIcon = {
-                    IconButton(onClick = { }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { }) {
-                        Icon(Icons.Default.Info, contentDescription = "Info")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = KYCColors.LightGray
-                )
-            )
-        }
-
         item {
             Spacer(modifier = Modifier.height(16.dp))
         }
@@ -118,24 +97,18 @@ fun MainKYCScreen(navController: NavController) {
                     title = "Video KYC",
                     isSelected = selectedOption == "video",
                     onClick = { selectedOption = "video" },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
+                    imageRes = R.drawable.ic_video_kyc
                 )
 
-                // Digilocker Option (disabled)
-                KYCOptionCard(
-                    title = "Digilocker",
-                    isSelected = false,
-                    onClick = { },
-                    isEnabled = false,
-                    modifier = Modifier.weight(1f)
-                )
 
                 // Aadhar KYC Option
                 KYCOptionCard(
                     title = "Aadhar KYC",
                     isSelected = selectedOption == "aadhar",
                     onClick = { selectedOption = "aadhar" },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
+                    imageRes = R.drawable.ic_aadhar_kyc
                 )
             }
         }
@@ -160,7 +133,8 @@ fun KYCOptionCard(
     isSelected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    isEnabled: Boolean = true
+    isEnabled: Boolean = true,
+    imageRes:Int
 ) {
     Card(
         modifier = modifier
@@ -173,35 +147,31 @@ fun KYCOptionCard(
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Icon placeholder
-            Box(
-                modifier = Modifier
-                    .size(24.dp)
-                    .background(
-                        if (isSelected) KYCColors.White else KYCColors.Purple,
-                        CircleShape
+            Column() {
+                Text(
+                    text = title,
+                    fontSize = 16.sp,
+                    color = if (isSelected) KYCColors.White else KYCColors.DarkGray,
+                    fontWeight = if (isSelected) FontWeight.Medium else FontWeight.Normal,
+                    modifier = Modifier.weight(1f).padding(5.dp)
+                )
+                Row(modifier = Modifier.weight(1f).fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Absolute.SpaceAround) {
+
+                    Image(painter = painterResource(id = imageRes), contentDescription = "",
+                        modifier=Modifier.size(24.dp))
+                    // Toggle indicator
+                    Switch(
+                        checked = isSelected,
+                        onCheckedChange = if (isEnabled) { { onClick() } } else { {} },
+                        modifier = Modifier.size(16.dp),
+                        enabled = isEnabled
                     )
-            )
+                }
+            }
 
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = title,
-                fontSize = 12.sp,
-                color = if (isSelected) KYCColors.White else KYCColors.DarkGray,
-                fontWeight = if (isSelected) FontWeight.Medium else FontWeight.Normal
-            )
-
-            // Toggle indicator
-            Switch(
-                checked = isSelected,
-                onCheckedChange = if (isEnabled) { { onClick() } } else { {} },
-                modifier = Modifier.size(16.dp),
-                enabled = isEnabled
-            )
         }
     }
 }
@@ -224,22 +194,30 @@ fun VideoKYCContent(navController: NavController) {
         )
         
         Image(painter = painterResource(id = R.drawable.video1), contentDescription ="",
-            modifier = Modifier.fillMaxWidth().height(120.dp))
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(120.dp))
 
         Spacer(modifier = Modifier.height(12.dp))
 
         Image(painter = painterResource(id = R.drawable.video2), contentDescription ="",
-            modifier = Modifier.fillMaxWidth().height(120.dp))
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(120.dp))
 
         Spacer(modifier = Modifier.height(12.dp))
 
         Image(painter = painterResource(id = R.drawable.video3), contentDescription ="",
-            modifier = Modifier.fillMaxWidth().height(120.dp))
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(120.dp))
 
         Spacer(modifier = Modifier.height(12.dp))
 
         Image(painter = painterResource(id = R.drawable.video4), contentDescription ="",
-            modifier = Modifier.fillMaxWidth().height(120.dp))
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(120.dp))
 
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -529,7 +507,7 @@ fun VideoCallScreen(navController: NavController) {
             )
         }
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(80.dp))
     }
 }
 
