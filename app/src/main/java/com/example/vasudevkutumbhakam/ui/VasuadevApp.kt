@@ -46,7 +46,8 @@ enum class VasuadevAppScreen(val title :String){
     Profile("Profile"),
     User("User"),
     IdProof("ID Proof"),
-    Kyc("KYC")
+    Kyc("KYC"),
+    Bank("Bank Details")
 }
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -83,7 +84,10 @@ fun VasuadevApp(appViewModel: AppViewModel= viewModel(),
                 IDProofScreen(navController)
             }
             composable(route = VasuadevAppScreen.Kyc.name){
-                KYCApp()
+                KYCApp(navController)
+            }
+            composable(route=VasuadevAppScreen.Bank.name){
+                BankDetailsScreen(navController = navController)
             }
         }
     }

@@ -30,6 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -45,17 +46,10 @@ object KYCColors {
     val LightBlue = Color(0xFFE0E7FF)
 }
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            KYCApp()
-        }
-    }
-}
 
 @Composable
-fun KYCApp() {
+fun KYCApp(navControl:NavHostController) {
+
     val navController = rememberNavController()
 
     NavHost(
@@ -66,7 +60,7 @@ fun KYCApp() {
         composable("video_kyc_guide") { VideoKYCGuideScreen(navController) }
         composable("video_call") { VideoCallScreen(navController) }
         composable("aadhar_details") { AadharDetailsScreen(navController) }
-        composable("verify_otp") { VerifyOTPScreen(navController) }
+        composable("verify_otp") { VerifyOTPScreen(navControl) }
     }
 }
 
@@ -242,7 +236,7 @@ fun VideoKYCContent(navController: NavController) {
             onClick = { navController.navigate("video_call") },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp),
+                .height(50.dp),
             colors = ButtonDefaults.buttonColors(containerColor = KYCColors.Purple),
             enabled = termsAccepted
         ) {
@@ -392,7 +386,7 @@ fun AadharKYCContent(navController: NavController) {
             onClick = { navController.navigate("verify_otp") },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp),
+                .height(50.dp),
             colors = ButtonDefaults.buttonColors(containerColor = KYCColors.Purple),
             enabled = aadharNumber.length == 12 && firstName.isNotBlank() && lastName.isNotBlank() && consent1 && consent2
         ) {
@@ -601,10 +595,12 @@ fun VerifyOTPScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(48.dp))
 
                 Button(
-                    onClick = { /* Verify OTP */ },
+                    onClick = {
+                        navController.navigate(VasuadevAppScreen.Bank.name)
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(56.dp),
+                        .height(50.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = KYCColors.Purple)
                 ) {
                     Text(
