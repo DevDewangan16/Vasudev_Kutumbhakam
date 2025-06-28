@@ -18,11 +18,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.vasudevkutumbhakam.R
 
 @Composable
-fun IDProofScreen() {
+fun IDProofScreen(navController: NavHostController) {
     val idProofNumber = remember { mutableStateOf("") }
     val frontImage = remember { mutableStateOf<Uri?>(null) }
     val backImage = remember { mutableStateOf<Uri?>(null) }
@@ -134,6 +136,7 @@ fun IDProofScreen() {
 
             Button(
                 onClick = {
+                    navController.navigate(VasuadevAppScreen.Kyc.name)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
