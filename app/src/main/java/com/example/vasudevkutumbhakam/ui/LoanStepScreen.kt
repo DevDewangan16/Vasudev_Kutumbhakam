@@ -12,10 +12,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.vasudevkutumbhakam.R
 
 @Composable
-fun LoanStepsScreen() {
+fun LoanStepsScreen(navController: NavHostController) {
     val stepItems = listOf(
         Pair("User Details", R.drawable.user),
         Pair("Income Details", R.drawable.income),
@@ -88,7 +90,9 @@ fun LoanStepsScreen() {
         }
 
         Button(
-            onClick = { /* Handle continue click */ },
+            onClick = {
+                navController.navigate(VasuadevAppScreen.User.name)
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp),

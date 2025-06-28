@@ -43,7 +43,8 @@ enum class VasuadevAppScreen(val title :String){
     Earn("Play & Earn"),
     Loans("Loan"),
     Assist("Assist"),
-    Profile("Profile")
+    Profile("Profile"),
+    User("User")
 }
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -69,7 +70,11 @@ fun VasuadevApp(appViewModel: AppViewModel= viewModel(),
             }
 
             composable(route = VasuadevAppScreen.Loans.name){
-                LoanStepsScreen()
+                LoanStepsScreen(navController)
+            }
+
+            composable(route=VasuadevAppScreen.User.name){
+                UserDetailsScreen()
             }
         }
     }
