@@ -58,7 +58,7 @@ fun KYCApp(navControl:NavHostController) {
     ) {
         composable("main") { MainKYCScreen(navController) }
         composable("video_kyc_guide") { VideoKYCGuideScreen(navController) }
-        composable("video_call") { VideoCallScreen(navController) }
+        composable("video_call") { VideoCallScreen(navControl) }
         composable("aadhar_details") { AadharDetailsScreen(navController) }
         composable("verify_otp") { VerifyOTPScreen(navControl) }
     }
@@ -71,7 +71,7 @@ fun MainKYCScreen(navController: NavController) {
 
     LazyColumn(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize().padding(10.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {
         item {
@@ -487,7 +487,9 @@ fun VideoCallScreen(navController: NavController) {
 
         // Control button
         Box(
-            modifier = Modifier
+            modifier = Modifier.clickable {
+                navController.navigate(VasuadevAppScreen.Bank.name)
+            }
                 .size(64.dp)
                 .background(KYCColors.White, CircleShape)
                 .align(Alignment.CenterHorizontally),
@@ -515,26 +517,6 @@ fun VerifyOTPScreen(navController: NavController) {
             .fillMaxSize()
             .background(KYCColors.LightGray)
     ) {
-        item {
-            // Top bar
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "Verify Aadhar",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = KYCColors.LightGray
-                )
-            )
-        }
 
         item {
             Spacer(modifier = Modifier.height(32.dp))

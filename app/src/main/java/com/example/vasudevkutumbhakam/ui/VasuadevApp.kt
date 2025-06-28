@@ -13,12 +13,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.internal.composableLambda
@@ -39,31 +43,55 @@ import com.example.vasudevkutumbhakam.R
 import java.lang.reflect.Modifier
 
 enum class VasuadevAppScreen(val title :String){
-    Home("Home"),
+    Home("Welcome!!"),
     Earn("Play & Earn"),
     Loans("Loan"),
     Assist("Assist"),
     Profile("Profile"),
-    User("User"),
+    User("User Details"),
     IdProof("ID Proof"),
     Kyc("KYC"),
-    Bank("Bank Details")
+    Bank("Bank Details"),
+    Submission("")
 }
+
+var canNavigateBack=false
+
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun VasuadevApp(appViewModel: AppViewModel= viewModel(),
         navController: NavHostController = rememberNavController()) {
 
+    canNavigateBack=navController.previousBackStackEntry != null
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen =VasuadevAppScreen.valueOf(
         backStackEntry?.destination?.route?:VasuadevAppScreen.Home.name
     )
 
-    Scaffold(bottomBar = {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                modifier = androidx.compose.ui.Modifier.height(65.dp),
+                title = {
+                    Text(text = currentScreen.title)
+                },
+                navigationIcon = {
+                    if (canNavigateBack){
+                        IconButton(onClick = {
+                            navController.navigateUp()
+                        }) {
+                            Icon(imageVector = Icons.Filled.ArrowBack, contentDescription ="Back Button" )
+                        }
+                    }
+                })
+        },
+        bottomBar = {
         BottomAppBar(navController = navController, currentScreen =currentScreen )
 
     }) {
-        NavHost(navController = navController, startDestination =VasuadevAppScreen.Home.name ) {
+        NavHost(navController = navController, startDestination =VasuadevAppScreen.Home.name,
+            modifier = androidx.compose.ui.Modifier.padding(it)) {
             composable(route = VasuadevAppScreen.Home.name){
                 HomeScreen()
             }
@@ -88,6 +116,9 @@ fun VasuadevApp(appViewModel: AppViewModel= viewModel(),
             }
             composable(route=VasuadevAppScreen.Bank.name){
                 BankDetailsScreen(navController = navController)
+            }
+            composable(route = VasuadevAppScreen.Submission.name){
+                SubmissionScreen()
             }
         }
     }
@@ -118,11 +149,7 @@ fun BottomAppBar(navController: NavHostController,
 
         Column(horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(4.dp)
-            ,    modifier = androidx.compose.ui.Modifier.clickable {
-                navController.navigate(VasuadevAppScreen.Home.name) {
-                    popUpTo(0)
-                }
-            }) {
+        ) {
             Image(painter = painterResource(id = R.drawable.earn), contentDescription ="" ,
                 modifier = androidx.compose.ui.Modifier.size(24.dp))
             Text(text = "Play & Earn", fontSize = 10.sp)
@@ -142,11 +169,7 @@ fun BottomAppBar(navController: NavHostController,
 
         Column(horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(4.dp)
-            ,    modifier = androidx.compose.ui.Modifier.clickable {
-                navController.navigate(VasuadevAppScreen.Home.name) {
-                    popUpTo(0)
-                }
-            }) {
+            ) {
             Image(painter = painterResource(id = R.drawable.assist), contentDescription ="" ,
                 modifier = androidx.compose.ui.Modifier.size(24.dp))
             Text(text = "Assist", fontSize = 10.sp)

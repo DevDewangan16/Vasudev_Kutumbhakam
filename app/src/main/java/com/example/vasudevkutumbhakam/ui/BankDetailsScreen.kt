@@ -36,7 +36,7 @@ fun BankDetailsScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.spacedBy(5.dp),
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(11.dp)
     ) {
         item {
             Spacer(
@@ -154,12 +154,12 @@ fun BankDetailsScreen(navController: NavHostController) {
                     unfocusedLabelColor = Color(0xff565656)
                 )
             )
-            Spacer(modifier = Modifier.fillMaxWidth().height(60.dp))
+            Spacer(modifier = Modifier.fillMaxWidth().height(175.dp))
         }
         item {
             Button(
                 onClick = {
-                    navController.navigate(VasuadevAppScreen.IdProof.name)
+                    navController.navigate(VasuadevAppScreen.Submission.name)
                 },
                 modifier = Modifier
                     .fillMaxWidth()

@@ -27,7 +27,7 @@ fun UserDetailsScreen(navController:NavHostController) {
         verticalArrangement = Arrangement.spacedBy(5.dp),
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(10.dp)
     ) {
         item { 
             Spacer(modifier = Modifier
