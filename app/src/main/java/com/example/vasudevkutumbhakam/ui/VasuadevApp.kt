@@ -44,7 +44,8 @@ enum class VasuadevAppScreen(val title :String){
     Loans("Loan"),
     Assist("Assist"),
     Profile("Profile"),
-    User("User")
+    User("User"),
+    IdProof("ID Proof")
 }
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -74,7 +75,11 @@ fun VasuadevApp(appViewModel: AppViewModel= viewModel(),
             }
 
             composable(route=VasuadevAppScreen.User.name){
-                UserDetailsScreen()
+                UserDetailsScreen(navController)
+            }
+
+            composable(route = VasuadevAppScreen.IdProof.name){
+                IDProofScreen()
             }
         }
     }

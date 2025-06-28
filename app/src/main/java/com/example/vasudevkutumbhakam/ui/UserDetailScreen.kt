@@ -10,9 +10,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 @Composable
-fun UserDetailsScreen() {
+fun UserDetailsScreen(navController:NavHostController) {
     var fullName by remember { mutableStateOf("") }
     var fatherName by remember { mutableStateOf("") }
     var dob by remember { mutableStateOf("") }
@@ -202,6 +203,7 @@ fun UserDetailsScreen() {
         item {
             Button(
                 onClick = {
+                    navController.navigate(VasuadevAppScreen.IdProof.name)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -213,7 +215,6 @@ fun UserDetailsScreen() {
                 Text(text = "Next", fontSize = 16.sp)
             }
             Spacer(modifier = Modifier.height(80.dp))
-
         }
     }
 }
