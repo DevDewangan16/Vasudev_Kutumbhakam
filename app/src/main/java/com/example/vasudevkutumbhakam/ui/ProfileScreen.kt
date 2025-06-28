@@ -157,57 +157,9 @@ fun ProfileScreen() {
             Spacer(modifier = Modifier.height(16.dp))
         }
         // Share and Earn Reward Card
-        item {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .clickable { /* Handle share and earn */ },
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFE8E8E8)),
-                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Column(
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(
-                            text = "Share and Earn Reward points",
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(
-                            text = "Share the app & Earn 100+ for each earn",
-                            fontSize = 12.sp,
-                            color = Color.Gray,
-                            lineHeight = 16.sp
-                        )
-                    }
-
-                    // Reward illustration
-                    Box(
-                        modifier = Modifier
-                            .size(50.dp)
-                            .clip(CircleShape)
-                            .background(Color.White),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        // You can replace this with an actual reward icon/image
-                        Text(
-                            text = "🎁",
-                            fontSize = 24.sp
-                        )
-                    }
-                }
-            }
+        item{
+            Image(painter = painterResource(id = R.drawable.share_earn_banner), contentDescription = "Share and Earn Banner." ,
+                modifier = Modifier.fillMaxWidth().height(98.dp).padding(5.dp))
         }
 
         // Add some bottom spacing for the navigation bar

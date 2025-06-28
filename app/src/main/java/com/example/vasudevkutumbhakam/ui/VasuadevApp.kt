@@ -21,6 +21,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.internal.composableLambda
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -62,8 +63,13 @@ fun VasuadevApp(appViewModel: AppViewModel= viewModel(),
             composable(route = VasuadevAppScreen.Home.name){
                 HomeScreen()
             }
+
             composable(route = VasuadevAppScreen.Profile.name){
                 ProfileScreen()
+            }
+
+            composable(route = VasuadevAppScreen.Loans.name){
+                LoanStepsScreen()
             }
         }
     }
@@ -107,7 +113,7 @@ fun BottomAppBar(navController: NavHostController,
         Column(horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(4.dp)
             ,    modifier = androidx.compose.ui.Modifier.clickable {
-                navController.navigate(VasuadevAppScreen.Home.name) {
+                navController.navigate(VasuadevAppScreen.Loans.name) {
                     popUpTo(0)
                 }
             }) {
