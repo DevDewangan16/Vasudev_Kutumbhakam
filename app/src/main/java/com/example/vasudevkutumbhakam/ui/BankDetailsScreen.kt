@@ -154,7 +154,7 @@ fun BankDetailsScreen(navController: NavHostController) {
                     unfocusedLabelColor = Color(0xff565656)
                 )
             )
-            Spacer(modifier = Modifier.fillMaxWidth().height(150.dp))
+            Spacer(modifier = Modifier.fillMaxWidth().height(130.dp))
         }
         item {
             Button(
