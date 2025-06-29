@@ -105,7 +105,7 @@ fun LoanStepsScreen(navController: NavHostController) {
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp),
+                    .height(50.dp).padding(start = 10.dp, end = 10.dp),
                 colors = ButtonDefaults.buttonColors(
                     Color(0xff636AE8)
                 )
