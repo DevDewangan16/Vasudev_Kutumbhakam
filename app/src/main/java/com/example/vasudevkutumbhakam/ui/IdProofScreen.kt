@@ -143,7 +143,8 @@ fun IDProofScreen(navController: NavHostController) {
                     .height(50.dp),
                 colors = ButtonDefaults.buttonColors(
                     Color(0xff636AE8)
-                )
+                ),
+                enabled = isChecked.value
             ) {
                 Text(text = "Next", fontSize = 16.sp)
             }

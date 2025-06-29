@@ -52,7 +52,8 @@ enum class VasuadevAppScreen(val title :String){
     IdProof("ID Proof"),
     Kyc("KYC"),
     Bank("Bank Details"),
-    Submission("")
+    Submission(""),
+    Income("Income Details")
 }
 
 var canNavigateBack=false
@@ -119,6 +120,9 @@ fun VasuadevApp(appViewModel: AppViewModel= viewModel(),
             }
             composable(route = VasuadevAppScreen.Submission.name){
                 SubmissionScreen()
+            }
+            composable(route = VasuadevAppScreen.Income.name){
+                IncomeApp(navControl = navController)
             }
         }
     }

@@ -203,14 +203,15 @@ fun UserDetailsScreen(navController:NavHostController) {
         item {
             Button(
                 onClick = {
-                    navController.navigate(VasuadevAppScreen.IdProof.name)
+                    navController.navigate(VasuadevAppScreen.Income.name)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
                 colors = ButtonDefaults.buttonColors(
                     Color(0xff636AE8)
-                )
+                ),
+                enabled = fullName.isNotBlank() && fatherName.isNotBlank() && dob.isNotBlank() && gender.isNotBlank()
             ) {
                 Text(text = "Next", fontSize = 16.sp)
             }

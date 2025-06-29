@@ -154,7 +154,7 @@ fun BankDetailsScreen(navController: NavHostController) {
                     unfocusedLabelColor = Color(0xff565656)
                 )
             )
-            Spacer(modifier = Modifier.fillMaxWidth().height(175.dp))
+            Spacer(modifier = Modifier.fillMaxWidth().height(150.dp))
         }
         item {
             Button(
@@ -166,7 +166,8 @@ fun BankDetailsScreen(navController: NavHostController) {
                     .height(50.dp),
                 colors = ButtonDefaults.buttonColors(
                     Color(0xff636AE8)
-                )
+                ),
+                enabled = accountholdername.isNotBlank() && bankName.isNotBlank() && accountNumber.isNotBlank() && confirmAccount.isNotBlank() && ifsc.isNotBlank()
             ) {
                 Text(text = "Submit Application", fontSize = 16.sp)
             }

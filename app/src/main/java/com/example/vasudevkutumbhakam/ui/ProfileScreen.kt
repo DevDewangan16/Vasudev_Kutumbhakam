@@ -112,7 +112,6 @@ fun ProfileScreen() {
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xff636AE8)
                     ),
-                    shape = RoundedCornerShape(5.dp)
                 ) {
                     Text(
                         text = "Invite & Earn upto 250",

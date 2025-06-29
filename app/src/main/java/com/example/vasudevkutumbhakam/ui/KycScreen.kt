@@ -71,7 +71,8 @@ fun MainKYCScreen(navController: NavController) {
 
     LazyColumn(
         modifier = Modifier
-            .fillMaxSize().padding(10.dp),
+            .fillMaxSize()
+            .padding(10.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {
         item {
@@ -149,9 +150,13 @@ fun KYCOptionCard(
                     fontSize = 16.sp,
                     color = if (isSelected) KYCColors.White else KYCColors.DarkGray,
                     fontWeight = if (isSelected) FontWeight.Medium else FontWeight.Normal,
-                    modifier = Modifier.weight(1f).padding(5.dp)
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(5.dp)
                 )
-                Row(modifier = Modifier.weight(1f).fillMaxWidth(),
+                Row(modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
                     horizontalArrangement = Arrangement.Absolute.SpaceAround) {
 
                     Image(painter = painterResource(id = imageRes), contentDescription = "",
@@ -413,7 +418,7 @@ fun VideoCallScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(600.dp)
+                .height(500.dp)
                 .padding(16.dp)
                 .border(4.dp, KYCColors.Purple, RoundedCornerShape(16.dp))
                 .background(Color.Gray.copy(alpha = 0.3f), RoundedCornerShape(16.dp)),
@@ -441,15 +446,8 @@ fun VideoCallScreen(navController: NavController) {
                     .align(Alignment.TopEnd)
                     .offset(x = (-16).dp, y = 16.dp)
             ) {
-                // Agent avatar placeholder
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(KYCColors.White.copy(alpha = 0.9f), RoundedCornerShape(8.dp)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("Agent", color = KYCColors.DarkGray)
-                }
+                Image(painter = painterResource(id = R.drawable.avatar), contentDescription = "",
+                    modifier = Modifier.fillMaxSize())
             }
 
             Text(
@@ -487,9 +485,10 @@ fun VideoCallScreen(navController: NavController) {
 
         // Control button
         Box(
-            modifier = Modifier.clickable {
-                navController.navigate(VasuadevAppScreen.Bank.name)
-            }
+            modifier = Modifier
+                .clickable {
+                    navController.navigate(VasuadevAppScreen.Bank.name)
+                }
                 .size(64.dp)
                 .background(KYCColors.White, CircleShape)
                 .align(Alignment.CenterHorizontally),
