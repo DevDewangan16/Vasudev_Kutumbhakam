@@ -28,6 +28,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.internal.composableLambda
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -129,65 +130,99 @@ fun VasuadevApp(appViewModel: AppViewModel= viewModel(),
 }
 
 @Composable
-fun BottomAppBar(navController: NavHostController,
-                 currentScreen: VasuadevAppScreen){
-    Row (horizontalArrangement = Arrangement.SpaceEvenly,
+fun BottomAppBar(navController: NavHostController, currentScreen: VasuadevAppScreen) {
+    val selectedColor = Color(0xff636AE8)
+    val unselectedColor = Color.Black
+
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = androidx.compose.ui.Modifier
             .fillMaxWidth()
             .height(95.dp)
             .padding(10.dp)
-            .background(
-                color = Color.White
-            )){
+            .background(color = Color.White)
+    ) {
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(4.dp)
-            ,    modifier = androidx.compose.ui.Modifier.clickable {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = androidx.compose.ui.Modifier.clickable {
                 navController.navigate(VasuadevAppScreen.Home.name) {
                     popUpTo(0)
                 }
-            }) {
-            Icon(imageVector = Icons.Outlined.Home, contentDescription ="Home" )
-            Text(text = "Home", fontSize = 10.sp)
+            }
+        ) {
+            val color = if (currentScreen == VasuadevAppScreen.Home) selectedColor else unselectedColor
+            Icon(
+                imageVector = Icons.Outlined.Home,
+                contentDescription = "Home",
+                tint = color
+            )
+            Text(text = "Home", fontSize = 10.sp, color = color)
         }
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally,
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Image(painter = painterResource(id = R.drawable.earn), contentDescription ="" ,
-                modifier = androidx.compose.ui.Modifier.size(24.dp))
-            Text(text = "Play & Earn", fontSize = 10.sp)
+            val color = if (currentScreen == VasuadevAppScreen.Earn) selectedColor else unselectedColor
+            Image(
+                painter = painterResource(id = R.drawable.earn),
+                contentDescription = "",
+                modifier = androidx.compose.ui.Modifier.size(24.dp)
+            )
+            Text(text = "Play & Earn", fontSize = 10.sp, color = color)
         }
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(4.dp)
-            ,    modifier = androidx.compose.ui.Modifier.clickable {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = androidx.compose.ui.Modifier.clickable {
                 navController.navigate(VasuadevAppScreen.Loans.name) {
                     popUpTo(0)
                 }
-            }) {
-            Image(painter = painterResource(id = R.drawable.loan), contentDescription = "",
-                modifier = androidx.compose.ui.Modifier.size(24.dp))
-            Text(text = "Loans", fontSize = 10.sp)
+            }
+        ) {
+            val color = if (currentScreen == VasuadevAppScreen.Loans) selectedColor else unselectedColor
+            Image(
+                painter = painterResource(id = R.drawable.loan),
+                contentDescription = "",
+                modifier = androidx.compose.ui.Modifier.size(24.dp),
+                colorFilter = ColorFilter.tint(color)
+
+            )
+            Text(text = "Loans", fontSize = 10.sp, color = color)
         }
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally,
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-            Image(painter = painterResource(id = R.drawable.assist), contentDescription ="" ,
-                modifier = androidx.compose.ui.Modifier.size(24.dp))
-            Text(text = "Assist", fontSize = 10.sp)
+        ) {
+            val color = if (currentScreen == VasuadevAppScreen.Assist) selectedColor else unselectedColor
+            Image(
+                painter = painterResource(id = R.drawable.assist),
+                contentDescription = "",
+                modifier = androidx.compose.ui.Modifier.size(24.dp)
+            )
+            Text(text = "Assist", fontSize = 10.sp, color = color)
         }
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(4.dp)
-            ,    modifier = androidx.compose.ui.Modifier.clickable {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = androidx.compose.ui.Modifier.clickable {
                 navController.navigate(VasuadevAppScreen.Profile.name) {
                     popUpTo(0)
                 }
-            }) {
-            Icon(imageVector = Icons.Outlined.AccountCircle, contentDescription ="Home" )
-            Text(text = "Profile", fontSize = 10.sp)
+            }
+        ) {
+            val color = if (currentScreen == VasuadevAppScreen.Profile) selectedColor else unselectedColor
+            Icon(
+                imageVector = Icons.Outlined.AccountCircle,
+                contentDescription = "Profile",
+                tint = color
+            )
+            Text(text = "Profile", fontSize = 10.sp, color = color)
         }
     }
 }
